@@ -1,15 +1,15 @@
 #About Actuarius#
-Actuarius is a Markdown Processor written in Scala using parser combinators. For detailled information, (head over to the Actuarius Wiki)[https://github.com/chenkelmann/actuarius/wiki]. 
+Actuarius is a Markdown Processor written in Scala using parser combinators. For detailled information, [head over to the Actuarius Wiki](https://github.com/chenkelmann/actuarius/wiki). 
 
 The project homepage can be found on github: https://github.com/chenkelmann/actuarius
 
-(To try Actuarius out, you can use the web dingus on my home page.)[http://henkelmann.eu/projects/actuarius/dingus]. (The web preview is currently broken but will be fixed (hopefully) soon.)
+[To try Actuarius out, you can use the web dingus on my home page.](http://henkelmann.eu/projects/actuarius/dingus). (The web preview is currently broken but will be fixed (hopefully) soon.)
 
 #License#
 Actuarius is licensed under the 3-clause BSD license. For details see the `LICENSE` file that comes with the source.
 
 #Compatibility#
-Actuarius tries to stay as close to the original Markdown syntax definition as possible. There were however some quirks in the original Markdown I did not like. I wrote Actuarius as a Markdown processor for my homebrew blog engine, so I took the liberty to diverge slightly from the way the original Markdown works. The details are explained (in the respective article in the Actuarius Wiki)[https://github.com/chenkelmann/actuarius/wiki/Differences-Between-Actuarius-And-Standard-Markdown]
+Actuarius tries to stay as close to the original Markdown syntax definition as possible. There were however some quirks in the original Markdown I did not like. I wrote Actuarius as a Markdown processor for my homebrew blog engine, so I took the liberty to diverge slightly from the way the original Markdown works. The details are explained [in the respective article in the Actuarius Wiki](https://github.com/chenkelmann/actuarius/wiki/Differences-Between-Actuarius-And-Standard-Markdown)
 
 
 #Maven#

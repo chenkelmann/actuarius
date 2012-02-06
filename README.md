@@ -1,9 +1,14 @@
 #About Actuarius#
-Actuarius is a Markdown Processor written in Scala using parser combinators. For detailled information, [head over to the Actuarius Wiki](https://github.com/chenkelmann/actuarius/wiki). 
+Actuarius is a Markdown Processor written in Scala using parser combinators. 
 
 The project homepage can be found on github: https://github.com/chenkelmann/actuarius
 
-[To try Actuarius out, you can use the web dingus on my home page.](http://henkelmann.eu/projects/actuarius/dingus). (The web preview is currently broken but will be fixed (hopefully) soon.)
+For detailled information, please consult the Actuarius Wiki: https://github.com/chenkelmann/actuarius/wiki 
+
+To browse the scaladoc online, go to: http://doc.henkelmann.eu/actuarius/index.html
+
+To try Actuarius out, you can use the web dingus on my home page: http://henkelmann.eu/projects/actuarius/dingus 
+(The web preview is currently broken but will be fixed (hopefully) soon.)
 
 #License#
 Actuarius is licensed under the 3-clause BSD license. For details see the `LICENSE` file that comes with the source.

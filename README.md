@@ -10,6 +10,8 @@ To browse the scaladoc online, go to: http://doc.henkelmann.eu/actuarius/index.h
 To try Actuarius out, you can use the web dingus on my home page: http://henkelmann.eu/projects/actuarius/dingus 
 (The web preview is currently broken but will be fixed (hopefully) soon.)
 
+To get Actuarius, you can either check out the source from github, use maven/sbt to add it as a dependency (see below) or download the binary jar, javadoc jar or source jar directly from my maven repo at http://maven.henkelmann.eu/eu/henkelmann/
+
 ##License##
 Actuarius is licensed under the 3-clause BSD license. For details see the `LICENSE` file that comes with the source.
 

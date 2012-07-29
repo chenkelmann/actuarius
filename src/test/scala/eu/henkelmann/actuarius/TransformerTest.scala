@@ -2,11 +2,13 @@ package eu.henkelmann.actuarius
 
 import org.scalatest.matchers.ShouldMatchers
 import org.scalatest.FlatSpec
+import org.junit.runner.RunWith
+import org.scalatest.junit.JUnitRunner
 
 /**
  * Tests the behavior of the complete parser, i.e. all parsing steps together.
  */
-
+@RunWith(classOf[JUnitRunner])
 class TransformerTest extends FlatSpec with ShouldMatchers with Transformer {
     
     "The Transformer" should "create xhtml fragments from markdown" in {

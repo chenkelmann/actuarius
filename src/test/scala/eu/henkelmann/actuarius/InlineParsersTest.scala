@@ -2,11 +2,13 @@ package eu.henkelmann.actuarius
 
 import org.scalatest.FlatSpec
 import org.scalatest.matchers.ShouldMatchers
+import org.junit.runner.RunWith
+import org.scalatest.junit.JUnitRunner
 
 /**
  * Tests Inline Parsing, i.e. emphasis , strong text, links, escapes etc.
  */
-
+@RunWith(classOf[JUnitRunner])
 class InlineParsersTest extends FlatSpec with ShouldMatchers with InlineParsers{
 
     ///////////////////////////////////////////////////////////////

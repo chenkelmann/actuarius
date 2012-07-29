@@ -2,11 +2,13 @@ package eu.henkelmann.actuarius
 
 import org.scalatest.matchers.ShouldMatchers
 import org.scalatest.FlatSpec
+import org.junit.runner.RunWith
+import org.scalatest.junit.JUnitRunner
 
 /**
  * Tests the Line Tokenizer that prepares input for parsing.
  */
-
+@RunWith(classOf[JUnitRunner])
 class LineTokenizerTest extends LineTokenizer with FlatSpec with ShouldMatchers{
 
     "The LineTokenizer" should "split input lines correctly" in {

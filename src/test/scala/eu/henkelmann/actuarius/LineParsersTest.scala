@@ -2,11 +2,13 @@ package eu.henkelmann.actuarius
 
 import org.scalatest.matchers.ShouldMatchers
 import org.scalatest.FlatSpec
+import org.junit.runner.RunWith
+import org.scalatest.junit.JUnitRunner
 
 /**
  * tests parsing of individual lines
  */
-
+@RunWith(classOf[JUnitRunner])
 class LineParsersTest extends FlatSpec with ShouldMatchers with LineParsers{
 
     "The LineParsers" should "parse horizontal rulers" in {

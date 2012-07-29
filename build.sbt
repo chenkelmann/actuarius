@@ -11,9 +11,7 @@ autoCompilerPlugins := true
 
 checksums := Nil
 
-organization := "org.hoisted" 
-
-// seq(webSettings :_*)
+organization := "eu.henkelmann" 
 
 resolvers += "Scala Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/" 
 
@@ -46,7 +44,7 @@ publishArtifact in Test := false
 pomIncludeRepository := { _ => false }
 
 pomExtra := (
-  <url>http://hoisted.org</url>
+  <url>https://github.com/chenkelmann/actuarius</url>
   <licenses>
     <license>
       <name>BSD 3 clause</name>

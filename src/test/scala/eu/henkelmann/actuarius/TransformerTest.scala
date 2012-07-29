@@ -203,4 +203,93 @@ else in the doc, define the link:</p>
         apply("<foo> bla\nblub <bar>hallo</bar>\n</foo>\n") should equal (
               "<foo> bla\nblub <bar>hallo</bar>\n</foo>\n")
     }
+    
+    it should "parse fenced code blocks" in {
+apply(
+"""```  foobar
+System.out.println("Hello World!");
+    
+<some> verbatim xml </some>
+    
+    <-not a space-style code line
+ 1. not a
+ 2. list
+    
+## not a header
+``` gotcha: not the end
+-----------
+but this is:
+```         
+"""    
+) should equal (
+"""<pre><code>System.out.println(&quot;Hello World!&quot;);
+    
+&lt;some&gt; verbatim xml &lt;/some&gt;
+    
+    &lt;-not a space-style code line
+ 1. not a
+ 2. list
+    
+## not a header
+``` gotcha: not the end
+-----------
+but this is:
+</code></pre>
+"""    
+)
+
+apply(
+"""```
+System.out.println("Hello World!");
+```
+And now to something completely different.
+    old style code
+"""    
+) should equal (
+"""<pre><code>System.out.println(&quot;Hello World!&quot;);
+</code></pre>
+<p>And now to something completely different.</p>
+<pre><code>old style code
+</code></pre>
+"""    
+)
+
+apply(
+"""```
+System.out.println("Hello World!");
+No need to end blocks
+
+And now to something completely different.
+    old style code
+"""    
+) should equal (
+"""<pre><code>System.out.println(&quot;Hello World!&quot;);
+No need to end blocks
+
+And now to something completely different.
+    old style code
+</code></pre>
+"""    
+)
+
+apply(
+"""Some text first
+```
+System.out.println("Hello World!");
+No need to end blocks
+
+And now to something completely different.
+    old style code
+"""    
+) should equal (
+"""<p>Some text first</p>
+<pre><code>System.out.println(&quot;Hello World!&quot;);
+No need to end blocks
+
+And now to something completely different.
+    old style code
+</code></pre>
+"""    
+)
+    }
 }

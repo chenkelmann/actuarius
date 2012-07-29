@@ -141,7 +141,8 @@ class LineTokenizer() extends Parsers {
                 case (_, n) if (n >= '0' && n <= '9') => p(lineParsers.oItemStartLine)(in)
                 case (_, ' ') => p(lineParsers.emptyOrCode)(in)
                 case (_, '\t')=> p(lineParsers.emptyOrCode)(in)
-                case (_, '\n') => p(lineParsers.emptyLine)(in)
+                case (_, '\n')=> p(lineParsers.emptyLine)(in)
+                case (_, '`') => p(lineParsers.fencedCodeStartOrEnd)(in)
                 case _        => p(lineParsers.otherLine)(in)
             }
         }

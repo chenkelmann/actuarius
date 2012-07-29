@@ -91,6 +91,18 @@ trait BlockParsers extends Parsers {
             out.append(indent(level)).append(deco.decorateCodeBlockClose)
         }
     }
+    
+    class FencedCodeBlock(language:String, lines:List[MarkdownLine]) extends MarkdownBlock{
+        def addResult(level:Int, out:StringBuilder) {
+            out.append(indent(level)).append(deco.decorateCodeBlockOpen)
+            for (line <- lines) {
+                val escaped = escapeXml(line.fullLine)
+                out.append(escaped).append('\n')
+                //out.append(line.content)
+            }
+            out.append(indent(level)).append(deco.decorateCodeBlockClose)
+        }
+    }
 
     /**
      * Represents a paragraph of text
@@ -227,6 +239,15 @@ trait BlockParsers extends Parsers {
         if (in.first.getClass == c) Success(in.first.asInstanceOf[T], in.rest)
         else                        Failure("Not a fitting line.", in)
     }
+    
+    /** 
+     * Parses a line of any type *but* T
+     */
+    def notLine[T](c:Class[T]):Parser[MarkdownLine] = Parser {in =>
+        if      (in.atEnd)               Failure("At end of input.", in)
+        else if (in.first.getClass == c) Failure("Not a fitting line.", in)
+        else                             Success(in.first, in.rest)
+    }
 
     /**
      * Parses any line.
@@ -279,6 +300,28 @@ trait BlockParsers extends Parsers {
     def codeBlock:Parser[CodeBlock] = line(classOf[CodeLine]) ~ ((optEmptyLines ~ line(classOf[CodeLine]))*) ^^ {
         case l ~ pairs => new CodeBlock( l :: pairs.map({case (a~b) => a++List(b)}).flatten )
     }
+    
+    /**
+     * Parses a fenced code block: a line starting a fenced code block with 
+     * "```", followed by any lines that do not stop it, optionally followed
+     * by the ending line. Optionally parsing the stopping line causes the 
+     * code block to extend to the end of the document. (This is the github 
+     * behavior, where omitting the line closing the code block causes the 
+     * block to extend to the end of the document as well)
+     */
+    def fencedCodeBlock:Parser[FencedCodeBlock] = 
+          (line(classOf[ExtendedFencedCode])|line(classOf[FencedCode])) ~
+          (notLine(classOf[FencedCode])*) ~                                            
+          opt(line(classOf[FencedCode]))^^ {
+        case (start:ExtendedFencedCode) ~ lines ~ _ => new FencedCodeBlock(start.languageFormat, lines)
+        case _ ~ lines ~ _ => new FencedCodeBlock("", lines)
+    }
+      
+                                            //line(classOf[FencedCodeStart]) ~ 
+                                            //((not(line(classOf[FencedCodeEnd]))*) ~ 
+                                            //opt(line(classOf[FencedCodeEnd])) ^^ {
+    //    case start ~ lines ~ end => new CodeBlock(lines.map(_.fullLine))
+    //}
 
 
     /** a consecutive block of paragraph lines
@@ -363,6 +406,8 @@ trait BlockParsers extends Parsers {
                 //setext headers have been processed before we are called, so this is safe
                 case l:SetExtHeaderLine => ruler(in)
                 case l:CodeLine => codeBlock(in)
+                case l:ExtendedFencedCode => fencedCodeBlock(in)
+                case l:FencedCode => fencedCodeBlock(in)
                 case l:BlockQuoteLine => blockquote(in)
                 case l:OItemStartLine => oList(in)
                 case l:UItemStartLine => uList(in)

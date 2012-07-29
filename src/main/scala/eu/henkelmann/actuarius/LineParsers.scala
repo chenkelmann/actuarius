@@ -67,6 +67,15 @@ case class OItemStartLine(pre:String, pay:String) extends MarkdownLine(pre, pay)
 /** A line in verbatim code or the continuation of a list item
  */
 case class CodeLine(pre:String, pay:String) extends MarkdownLine(pre, pay)
+/** Starting line of a fenced code block: three backticks followed by an optional
+ * language token
+ */
+case class ExtendedFencedCode(pre:String, pay:String) extends MarkdownLine(pre, pay) {
+    def languageFormat = pay.trim()
+}
+/** Ending line of a fenced code block: three backticks followed by optional whitespace 
+ */
+case class FencedCode(pre:String) extends MarkdownLine(pre)
 /** Any other line.
  */
 case class OtherLine(content:String) extends MarkdownLine(content)
@@ -212,7 +221,21 @@ trait LineParsers extends InlineParsers {
     val codeLine:Parser[CodeLine] = ("    " | "\t") ~ rest ^^ {
         case prefix ~ payload => new CodeLine(prefix, payload)
     }
-
+        
+    /**
+     * A fenced code line. Can be the start or the end of a fenced code block 
+     */
+    val fencedCodeLine:Parser[FencedCode] = """ {0,3}\`{3,}[\t\v ]*""".r ^^ {
+        case prefix => new FencedCode(prefix) 
+    }
+        
+    /** Matches the start of a fenced code block with additional language token: 
+     * up to three spaces, three or more backticks, whitespace, an optional
+     * language token, optional whitespace 
+     */
+    val extendedFencedCodeLine:Parser[ExtendedFencedCode] = fencedCodeLine ~ """\w+[\t\v ]*""".r ^^ {
+        case prefix ~ languageToken => new ExtendedFencedCode(prefix.fullLine, languageToken) 
+    }  
 
     /** Matches any line. Only called when all other line parsers have failed.
      * Makes sure line tokenizing does not fail and we do not loose any lines on the way.
@@ -231,5 +254,9 @@ trait LineParsers extends InlineParsers {
     /** First tries if the line is empty, if not tries for a code line.
      */
     val emptyOrCode:Parser[MarkdownLine] = emptyLine | codeLine
+    
+    /** Parses one of the fenced code lines
+     */
+    val fencedCodeStartOrEnd:Parser[MarkdownLine] = extendedFencedCodeLine | fencedCodeLine  
 }
 

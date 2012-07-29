@@ -108,19 +108,31 @@ class LineParsersTest extends FlatSpec with ShouldMatchers with LineParsers{
     it should "parse link definitions" in {
         val p = linkDefinitionStart
         apply(p, "[foo]: http://example.com/  \"Optional Title Here\"") should equal (
-        (new LinkDefinitionStart("foo", "http://example.com/"), Some("Optional Title Here")))
+        new LinkDefinitionStart("foo", "http://example.com/"), Some("Optional Title Here"))
         apply(p, "[foo]: http://example.com/") should equal (
-        (new LinkDefinitionStart("foo", "http://example.com/"), None))
+        new LinkDefinitionStart("foo", "http://example.com/"), None)
         apply(p, "[Foo]: http://example.com/  'Optional Title Here'") should equal (
-        (new LinkDefinitionStart("foo", "http://example.com/"), Some("Optional Title Here")))
+        new LinkDefinitionStart("foo", "http://example.com/"), Some("Optional Title Here"))
         apply(p, "[Foo]: http://example.com/?bla=<>  (Optional Title Here)") should equal (
-        (new LinkDefinitionStart("foo", "http://example.com/?bla=&lt;&gt;"), Some("Optional Title Here")))
+        new LinkDefinitionStart("foo", "http://example.com/?bla=&lt;&gt;"), Some("Optional Title Here"))
         apply(p, "[Foo]: http://example.com/?bla=<>  (Optional Title Here)") should equal (
-        (new LinkDefinitionStart("foo", "http://example.com/?bla=&lt;&gt;"), Some("Optional Title Here")))
+        new LinkDefinitionStart("foo", "http://example.com/?bla=&lt;&gt;"), Some("Optional Title Here"))
     }
 
     it should "parse link titles" in {
         val p = linkDefinitionTitle
         apply(p, "  (Optional Title Here)  ") should equal ("Optional Title Here")
+    }
+    
+    it should "parse openings of fenced code blocks" in {
+      val p = fencedCodeStartOrEnd
+      apply(p, "```") should equal (
+      new FencedCode("```"))
+      apply(p, "   ```\t") should equal (
+      new FencedCode("   ```\t"))
+      apply(p, "  ``` \t ") should equal (
+      new FencedCode("  ``` \t "))
+      apply(p, "  ``` \t java  \t ") should equal (
+      new ExtendedFencedCode("  ``` \t ", "java  \t "))
     }
 }

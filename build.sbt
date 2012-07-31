@@ -11,7 +11,7 @@ autoCompilerPlugins := true
 
 checksums := Nil
 
-organization := "eu.henkelmann.actuarius" 
+organization := "eu.henkelmann" 
 
 resolvers += "Scala Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/" 
 

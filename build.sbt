@@ -1,6 +1,8 @@
 //Project Information
 name := "actuarius"
 
+description := "Actuarius is a Markdown Processor written in Scala using parser combinators."
+
 scalaVersion := "2.9.2"
 
 scalacOptions += "-deprecation"

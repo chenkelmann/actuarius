@@ -19,20 +19,16 @@ Actuarius is licensed under the 3-clause BSD license. For details see the `LICEN
 Actuarius tries to stay as close to the original Markdown syntax definition as possible. There were however some quirks in the original Markdown I did not like. I wrote Actuarius as a Markdown processor for my homebrew blog engine, so I took the liberty to diverge slightly from the way the original Markdown works. The details are explained [in the respective article in the Actuarius Wiki](https://github.com/chenkelmann/actuarius/wiki/Differences-Between-Actuarius-And-Standard-Markdown)
 
 ##Maven##
-The group id is `eu.henkelmann.actuarius`, the artifact id is `actuarius_[scala-version]`, e.g.`actuarius_2.9.2`. The current stable version is 0.2.3. The current development version is 0.2.4-SNAPSHOT and is currently not available from public repositories.
-The repository url is http://maven.henkelmann.eu
+The group id is `eu.henkelmann`, the artifact id is `actuarius_[scala-version]`, e.g.`actuarius_2.9.2`. The current stable version is 0.2.4. The current development version is 0.2.5-SNAPSHOT.
+Actuarius is available from the [Sonatype OSS repository](https://oss.sonatype.org), so you should not have to add any repository definitions.
 
 Starting with version 0.2.4 there are builds for Scala 2.9.2, 2.9.1-1, 2.9.1, 2.9.0-1, 2.9.0, 2.8.1, 2.8.2 
 (How I hate Scala's binary incompatibilities…)
 
 ##sbt##
-For sbt, define the repo like so:
-
-    resolvers += "Christophs Maven Repo" at "http://maven.henkelmann.eu/"
-        
 To add the lib to your project, add the following to your `.sbt` file:
 
-    libraryDependencies += "eu.henkelmann.actuarius" % "actuarius" % "0.2.3"
+    libraryDependencies += "eu.henkelmann.actuarius" % "actuarius" % "0.2.4"
     
 Currently, Actuarius itself is built using sbt 0.11.x
 

@@ -19,7 +19,7 @@ resolvers += "Scala Snapshots" at "https://oss.sonatype.org/content/repositories
 
 resolvers += "Scala" at "https://oss.sonatype.org/content/groups/scala-tools/"
 
-version := "0.2.4-SNAPSHOT"
+version := "0.2.4"
 
 crossScalaVersions in ThisBuild := Seq("2.9.2", "2.9.1-1", "2.9.1", "2.9.0-1", "2.9.0", "2.8.1", "2.8.2")
 

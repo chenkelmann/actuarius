@@ -22,7 +22,7 @@ Actuarius tries to stay as close to the original Markdown syntax definition as p
 The group id is `eu.henkelmann`, the artifact id is `actuarius_[scala-version]`, e.g.`actuarius_2.9.2`. The current stable version is 0.2.4. The current development version is 0.2.5-SNAPSHOT.
 Actuarius is available from the [Sonatype OSS repository](https://oss.sonatype.org), so you should not have to add any repository definitions.
 
-Starting with version 0.2.4 there are builds for Scala 2.9.2, 2.9.1-1, 2.9.1, 2.9.0-1, 2.9.0, 2.8.1, 2.8.2 
+Starting with version 0.2.4 there are builds for Scala 2.9.2, 2.9.1, 2.9.0-1, 2.8.1, 2.8.2 
 (How I hate Scala's binary incompatibilities…)
 
 ##sbt##
@@ -35,6 +35,7 @@ Currently, Actuarius itself is built using sbt 0.11.x
 ##Version History##
 
 ###0.2.4###
+* artifacts are published via Sonatype OSS repository
 * added support for scala 2.9.2
 * switched to sbt 11.x as build system (thanks to David Pollack for the build file)
 * added initial support for fenced code blocks (hint for programming language to format in is parsed but ignored)

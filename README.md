@@ -28,7 +28,7 @@ Starting with version 0.2.4 there are builds for Scala 2.9.2, 2.9.1, 2.9.0-1, 2.
 ##sbt##
 To add the lib to your project, add the following to your `.sbt` file:
 
-    libraryDependencies += "eu.henkelmann.actuarius" % "actuarius" % "0.2.4"
+    libraryDependencies += "eu.henkelmann" % "actuarius_2.9.2" % "0.2.4"
     
 Currently, Actuarius itself is built using sbt 0.11.x
 

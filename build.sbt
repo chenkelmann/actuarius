@@ -3,7 +3,7 @@ name := "actuarius"
 
 description := "Actuarius is a Markdown Processor written in Scala using parser combinators."
 
-scalaVersion := "2.9.2"
+scalaVersion := "2.10.0-RC1"
 
 scalacOptions += "-deprecation"
 
@@ -19,16 +19,16 @@ resolvers += "Scala" at "https://oss.sonatype.org/content/groups/scala-tools/"
 
 version := "0.2.4"
 
-crossScalaVersions in ThisBuild := Seq("2.9.2", "2.9.1", "2.9.0-1", "2.8.1", "2.8.2")
+crossScalaVersions in ThisBuild := Seq("2.10.0-RC1","2.9.2", "2.9.1", "2.9.0-1", "2.8.1", "2.8.2")
 
 libraryDependencies ++= {
   Seq(
-    "org.scalatest" %% "scalatest" % "1.8" % "test" withSources(),
+    "org.scalatest" % "scalatest_2.10.0-RC2" % "2.0.M5" % "test" withSources(),
     "junit" % "junit" % "4.8.2" % "test"
   )
 }
 
-testListeners <<= target.map(t => Seq(new eu.henkelmann.sbt.JUnitXmlTestsListener(t.getAbsolutePath)))
+//testListeners <<= target.map(t => Seq(new eu.henkelmann.sbt.JUnitXmlTestsListener(t.getAbsolutePath)))
 
 publishTo <<= version { (v: String) =>
   val nexus = "https://oss.sonatype.org/"

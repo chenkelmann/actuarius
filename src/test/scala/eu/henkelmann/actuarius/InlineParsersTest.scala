@@ -19,7 +19,7 @@ class InlineParsersTest extends FlatSpec with ShouldMatchers with InlineParsers{
             try {
                 apply(p, a) should equal (b)
             } catch {
-                case e => println("Input causing the failure was: '" + a + "'."); throw e;
+                case e:Throwable => println("Input causing the failure was: '" + a + "'."); throw e;
             }
         }
     }

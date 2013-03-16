@@ -39,17 +39,21 @@ Currently, Actuarius itself is built using sbt 0.11.x
 
 ##Version History##
 
-###0.2.5###
+### 0.2.6
+* fixed bug in html / xml element parsing: attributes surrounded by ticks (`'`) are now also parsed as well as attributes surrounded by quotes (`"`)
+* fixed bug in unordered list item handling, items can now be also started by `-` and `+` as well as `*`
+
+### 0.2.5
 * added support for scala 2.10.0
 * dropped support for every all older scala versions except 2.9.2
 
-###0.2.4###
+### 0.2.4
 * artifacts are published via Sonatype OSS repository
 * added support for scala 2.9.2
 * switched to sbt 11.x as build system (thanks to David Pollack for the build file)
 * added initial support for fenced code blocks (hint for programming language to format in is parsed but ignored)
 
-###0.2.3###
+### 0.2.3
 
 * moved project to github
 * added support for scala 2.9.1

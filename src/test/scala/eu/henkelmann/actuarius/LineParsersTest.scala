@@ -26,7 +26,7 @@ class LineParsersTest extends FlatSpec with ShouldMatchers with LineParsers{
     }
 
     it should "parse a ruler that starts like a setext header line" in {
-        val p = setext2OrRuler
+        val p = setext2OrRulerOrUItem
         apply(p, "- - -")         should equal (new RulerLine("- - -"))
     }
 

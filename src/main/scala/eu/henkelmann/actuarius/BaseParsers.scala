@@ -222,7 +222,9 @@ trait BaseParsers extends RegexParsers {
      * everything between the quotes is run through the escape handling
      * That way you can omit xml escaping when writing inline XML in markdown.
      */
-    def xmlAttrVal:Parser[String] = '"' ~> ((not('"') ~> aChar)*) <~ '"' ^^ {'"' + _.mkString + '"'}
+    def xmlAttrVal:Parser[String] = 
+      ('"'  ~> ((not('"')  ~> aChar)*) <~ '"'  ^^ {'"' +  _.mkString + '"' }) |
+      ('\'' ~> ((not('\'') ~> aChar)*) <~ '\'' ^^ {'\'' + _.mkString + '\''})
     /** Parses an XML Attribute with simplified value handling like xmlAttrVal.
      */
     def xmlAttr:Parser[String] = ws ~ xmlName ~ '=' ~ xmlAttrVal ^^ {

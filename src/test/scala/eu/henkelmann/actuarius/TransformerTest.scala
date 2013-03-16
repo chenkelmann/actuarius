@@ -76,6 +76,30 @@ test"""
 </ul>
 """
         )
+        apply("+ foo\n+ bar\n+ baz\n") should equal (
+"""<ul>
+<li>foo</li>
+<li>bar</li>
+<li>baz</li>
+</ul>
+"""
+)
+        apply("- foo\n- bar\n- baz\n") should equal (
+"""<ul>
+<li>foo</li>
+<li>bar</li>
+<li>baz</li>
+</ul>
+"""
+)
+        apply("- foo\n+ bar\n* baz\n") should equal (
+"""<ul>
+<li>foo</li>
+<li>bar</li>
+<li>baz</li>
+</ul>
+"""
+)
         apply("1. foo\n22. bar\n10. baz\n") should equal (
 """<ol>
 <li>foo</li>
@@ -123,6 +147,24 @@ test"""
 </ul>
 """
         )
+        apply("""* foo
+        		
++ bar
+- baz
+
+* bam
+""") should equal (
+"""<ul>
+<li><p>foo</p>
+</li>
+<li><p>bar</p>
+</li>
+<li>baz</li>
+<li><p>bam</p>
+</li>
+</ul>
+"""
+		)
     }
 
     it should "stop a list after an empty line" in {

@@ -247,7 +247,7 @@ trait LineParsers extends InlineParsers {
     ///////////////////////////////////////////////////////////////
     /** First tries for a setext header level 2, then for a ruler.
      */
-    val setext2OrRuler:Parser[MarkdownLine] = setextHeader2 | ruler
+    val setext2OrRulerOrUItem:Parser[MarkdownLine] = setextHeader2 | ruler | uItemStartLine
     /** First tries for a ruler, then for an unordered list item start.
      */
     val rulerOrUItem:Parser[MarkdownLine] = ruler | uItemStartLine

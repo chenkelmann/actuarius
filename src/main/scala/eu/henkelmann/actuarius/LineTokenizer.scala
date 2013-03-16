@@ -133,11 +133,12 @@ class LineTokenizer() extends Parsers {
             val line      = in.first
             (firstChar(line), indicatorChar(line)) match {
                 case ('=', _) => p(lineParsers.setextHeader1)(in)
-                case ('-', _) => p(lineParsers.setext2OrRuler)(in)
+                case ('-', _) => p(lineParsers.setext2OrRulerOrUItem)(in)
                 case ('#', _) => p(lineParsers.atxHeader)(in)
-                case (_, '-') => p(lineParsers.ruler)(in)
-                case (_, '>') => p(lineParsers.blockquoteLine)(in)
+                case (_, '-') => p(lineParsers.rulerOrUItem)(in)
                 case (_, '*') => p(lineParsers.rulerOrUItem)(in)
+                case (_, '+') => p(lineParsers.uItemStartLine)(in)
+                case (_, '>') => p(lineParsers.blockquoteLine)(in)
                 case (_, n) if (n >= '0' && n <= '9') => p(lineParsers.oItemStartLine)(in)
                 case (_, ' ') => p(lineParsers.emptyOrCode)(in)
                 case (_, '\t')=> p(lineParsers.emptyOrCode)(in)

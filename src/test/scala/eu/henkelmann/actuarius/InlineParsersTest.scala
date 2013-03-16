@@ -98,7 +98,10 @@ class InlineParsersTest extends FlatSpec with ShouldMatchers with InlineParsers{
         ("<foo>",                                           "<foo>"),
         ("""<foo attr="bar">""",                            """<foo attr="bar">"""),
         ("""<foo attr="bar" attr2="baz">""",                """<foo attr="bar" attr2="baz">"""),
-        ("""<a href="http://www.example.com?p1=a&p2=b">""", """<a href="http://www.example.com?p1=a&amp;p2=b">""")
+        ("""<a href="http://www.example.com?p1=a&p2=b">""", """<a href="http://www.example.com?p1=a&amp;p2=b">"""),
+        ("""<foo attr='bar'>""",                            """<foo attr='bar'>"""),
+        ("""<foo attr="bar" attr2='baz'>""",                """<foo attr="bar" attr2='baz'>"""),
+        ("""<a href='http://www.example.com?p1=a&p2=b'>""", """<a href='http://www.example.com?p1=a&amp;p2=b'>""")
     )
 
     val xmlEndTagTests = List(
@@ -110,7 +113,11 @@ class InlineParsersTest extends FlatSpec with ShouldMatchers with InlineParsers{
         ("""hallo <foo attr="&'<>">*italic*</foo> ballo""",
          """hallo <foo attr="&amp;&apos;&lt;&gt;"><em>italic</em></foo> ballo"""),
         ("""hallo <foo attr="&'<>"/>*italic*<foo/> ballo""",
-         """hallo <foo attr="&amp;&apos;&lt;&gt;"/><em>italic</em><foo/> ballo""")
+         """hallo <foo attr="&amp;&apos;&lt;&gt;"/><em>italic</em><foo/> ballo"""),
+        ("""hallo <foo attr='&"<>'>*italic*</foo> ballo""",
+         """hallo <foo attr='&amp;&quot;&lt;&gt;'><em>italic</em></foo> ballo"""),
+        ("""hallo <foo attr='&"<>'/>*italic*<foo/> ballo""",
+         """hallo <foo attr='&amp;&quot;&lt;&gt;'/><em>italic</em><foo/> ballo""")
     )
 
     val mixedTests = List(

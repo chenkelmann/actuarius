@@ -32,18 +32,26 @@ trait Transformer {
     }
 }
 
+class SingleThreadedTransformer extends Transformer
+
 /**
  * Simple Standalone Markdown transformer.
  * Use this if you simply want to transform a block of markdown without any special options.
  * val input:String = ...
  * val xhtml:String = new ActuariusTransformer()(input)
  *
- * Note that Actuarius and hence this class is not thread-safe.
- * This is because it is based on Scala Parser Combinators which are not thread-safe :(
- * (though they should be IMHO)
+ * Note that Actuarius isn't inherantly thread-safe, as Scala Parser Combinators isn't, so this
+ * class instantiates a SingleThreadedTransformer for each thread.
+ * You'll need to write your own pooled implementation if this isn't efficient for your usage.
  */
-class ActuariusTransformer extends Transformer
+class ActuariusTransformer extends Transformer {
 
+    private[this] val threadLocalTransformer = new ThreadLocal[SingleThreadedTransformer] {
+        override def initialValue = new SingleThreadedTransformer
+    }
+
+    override def apply(s: String) = threadLocalTransformer.get()(s)
+}
 
 /**
  * Contains a main methdod that simply reads everything from stdin, parses it as markdown and

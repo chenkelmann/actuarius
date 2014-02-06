@@ -270,14 +270,14 @@ trait InlineParsers extends BaseParsers {
     /** An image with an explicit path.
      */
     val directImg:Parser[String] =
-        elem('[') ~> refText ~ ("](" ~ ows) ~ url ~ ows ~ title <~ (ows ~ ')') ^^ {
+        elem('[') ~> opt(refText) ~ ("](" ~ ows) ~ url ~ ows ~ title <~ (ows ~ ')') ^^ {
             case altText ~ _ ~ path ~ _ ~ ttl => deco.decorateImg(altText, path, ttl)
         }
     /**
      * Parses a referenced image.
      */
     def refImg(ctx:InlineContext):Parser[String] = ref(ctx) ^^ {
-        case (LinkDefinition(_, u, ttl), alt) => deco.decorateImg(alt, u, ttl)
+        case (LinkDefinition(_, u, ttl), alt) => deco.decorateImg(Option(alt), u, ttl)
     }
 
     /** Parses inline in a span element like bold or emphasis or link up until the given end marker

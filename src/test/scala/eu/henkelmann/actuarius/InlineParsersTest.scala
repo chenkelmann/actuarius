@@ -64,6 +64,8 @@ class InlineParsersTest extends FlatSpec with ShouldMatchers with InlineParsers{
 
 
     val imageTests = List(
+        ("""![](http://example.com)""",
+         """<img src="http://example.com" />"""),
         ("""![alt text](/src/img.png "img title")""",
          """<img src="/src/img.png" alt="alt text" title="img title" />"""),
         ("""![alt text](/src/img.png )""",

@@ -46,9 +46,9 @@ trait Decorator {
     }
     /** Used to print image elements (default: <img ...)
      */
-    def decorateImg(alt:String, src:String, title:Option[String]):String = title match {
-        case None    => "<img src=\"" + src + "\" alt=\"" + alt + "\" />"
-        case Some(t) => "<img src=\"" + src + "\" alt=\"" + alt + "\" title=\"" + t + "\" />"
+    def decorateImg(alt:Option[String], src:String, title:Option[String]):String = title match {
+        case None    => "<img src=\"" + src + alt.map("\" alt=\"" + _).getOrElse("") + "\" />"
+        case Some(t) => "<img src=\"" + src + alt.map("\" alt=\"" + _+ "\"").getOrElse("") + " title=\"" + t + "\" />"
     }
     /**used to print a horizontal ruler defaults to "<hr />\n" */
     def decorateRuler():String = "<hr />\n"

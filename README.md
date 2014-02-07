@@ -39,6 +39,11 @@ Currently, Actuarius itself is built using sbt 0.11.x
 
 ##Version History##
 
+### 0.2.7
+* Made alternative text for images optional
+* Upgraded to scalatest 1.9 for Scala 2.10.X releases
+* Moved to Scala 2.10.2
+
 ### 0.2.6
 * fixed bug in html / xml element parsing: attributes surrounded by ticks (`'`) are now also parsed as well as attributes surrounded by quotes (`"`)
 * fixed bug in unordered list item handling, items can now be also started by `-` and `+` as well as `*`

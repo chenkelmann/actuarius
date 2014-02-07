@@ -11,7 +11,7 @@ publishMavenStyle := true
 
 autoCompilerPlugins := true
 
-organization := "eu.henkelmann" 
+organization := "net.redhogs.actuarius" 
 
 resolvers += "Scala Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/" 
 
@@ -44,7 +44,7 @@ publishArtifact in Test := false
 pomIncludeRepository := { _ => false }
 
 pomExtra := (
-  <url>https://github.com/chenkelmann/actuarius</url>
+  <url>https://github.com/grahamar/actuarius</url>
   <licenses>
     <license>
       <name>BSD 3 clause</name>
@@ -53,8 +53,8 @@ pomExtra := (
     </license>
   </licenses>
   <scm>
-    <url>https://github.com/chenkelmann/actuarius.git</url>
-    <connection>scm:git:git://github.com/chenkelmann/actuarius.git</connection>
+    <url>git@github.com:grahamar/actuarius.git</url>
+    <connection>scm:git:git@github.com:grahamar/actuarius.git</connection>
   </scm>
   <developers>
   <developer>

@@ -8,7 +8,7 @@ description := "Actuarius is a Markdown Processor written in Scala using parser 
 
 scalaVersion := "2.10.2"
 
-crossScalaVersions in ThisBuild := Seq("2.10.2", "2.9.2")
+crossScalaVersions in ThisBuild := Seq("2.10.2", "2.10.0", "2.9.2")
 
 scalacOptions ++= Seq("-unchecked", "-deprecation", "-encoding", "utf8")
 
@@ -22,14 +22,12 @@ licenses := Seq("BSD 3 clause" -> url("http://opensource.org/licenses/BSD-3-Clau
 
 homepage := Some(url("https://github.com/grahamar/actuarius"))
 
-def scalatestDependency(scalaVersion: String) = scalaVersion match {
-  case "2.9.2" => "org.scalatest" %% "scalatest" % "1.8" % "test" withSources()
-  case "2.10.2" => "org.scalatest" %% "scalatest" % "1.9" % "test" withSources()
-}
-
 libraryDependencies += "junit" % "junit" % "4.8.2" % "test"
 
-libraryDependencies <+= scalaVersion(scalatestDependency(_))
+libraryDependencies <+= scalaVersion {
+  case "2.9.2" => "org.scalatest" %% "scalatest" % "1.8" % "test" withSources()
+  case _ => "org.scalatest" %% "scalatest" % "1.9" % "test" withSources()
+}
 
 publishTo <<= version { (v: String) =>
   val nexus = "https://oss.sonatype.org/"

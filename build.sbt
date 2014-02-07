@@ -22,7 +22,7 @@ crossScalaVersions in ThisBuild := Seq("2.10.2", "2.9.2")
 
 libraryDependencies ++= {
   Seq(
-    "org.scalatest" %% "scalatest" % "1.8" % "test" withSources(),
+    "org.scalatest" %% "scalatest" % "1.9" % "test" withSources(),
     "junit" % "junit" % "4.8.2" % "test"
   )
 }

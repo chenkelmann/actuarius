@@ -1,9 +1,10 @@
-//Project Information
+import sbtrelease.ReleasePlugin.ReleaseKeys._
+
 name := "actuarius"
 
 description := "Actuarius is a Markdown Processor written in Scala using parser combinators."
 
-scalaVersion := "2.10.0"
+scalaVersion := "2.10.2"
 
 scalacOptions += "-deprecation"
 
@@ -17,9 +18,7 @@ resolvers += "Scala Snapshots" at "https://oss.sonatype.org/content/repositories
 
 resolvers += "Scala" at "https://oss.sonatype.org/content/groups/scala-tools/"
 
-version := "0.2.7-SNAPSHOT"
-
-crossScalaVersions in ThisBuild := Seq("2.9.2", "2.10.0")
+crossScalaVersions in ThisBuild := Seq("2.10.2", "2.9.2")
 
 libraryDependencies ++= {
   Seq(
@@ -69,3 +68,4 @@ pomExtra := (
     </developer>
   </developers>)
 
+releaseSettings

@@ -23,6 +23,8 @@ crossScalaVersions in ThisBuild := Seq("2.9.2", "2.10.0", "2.11.0")
 
 libraryDependencies ++= {
   Seq(
+  	"org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.1",
+  	"org.scala-lang.modules" %% "scala-xml" % "1.0.2",
     "org.scalatest" %% "scalatest" % "2.1.6" % "test" withSources(),
     "junit" % "junit" % "4.8.2" % "test"
   )

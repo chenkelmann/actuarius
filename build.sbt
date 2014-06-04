@@ -21,13 +21,18 @@ version := "0.2.7-SNAPSHOT"
 
 crossScalaVersions in ThisBuild := Seq("2.9.2", "2.10.0", "2.11.0")
 
-libraryDependencies ++= {
-  Seq(
-  	"org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.1",
-  	"org.scala-lang.modules" %% "scala-xml" % "1.0.2",
-    "org.scalatest" %% "scalatest" % "2.1.6" % "test" withSources(),
-    "junit" % "junit" % "4.8.2" % "test"
-  )
+libraryDependencies <++= (scalaVersion) { v:String =>
+	if (v.startsWith("2.11"))
+		Seq("org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.1",
+		"org.scala-lang.modules" %% "scala-xml" % "1.0.2",
+		"org.scalatest" %% "scalatest" % "2.1.6" % "test" withSources(),
+		"junit" % "junit" % "4.8.2" % "test")
+	else if (v.startsWith("2.10"))
+		Seq("org.scalatest" %% "scalatest" % "2.1.6" % "test" withSources(),
+		"junit" % "junit" % "4.8.2" % "test")
+	else
+		Seq("org.scalatest" %% "scalatest" % "1.8" % "test" withSources(),
+		"junit" % "junit" % "4.8.2" % "test")
 }
 
 //TODO: reactivate once junit-XML listener is on maven central
